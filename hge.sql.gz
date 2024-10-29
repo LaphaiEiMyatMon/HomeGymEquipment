@@ -1,0 +1,334 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 28, 2022 at 09:41 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hge`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `AdminID` varchar(30) NOT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Password` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`AdminID`, `Name`, `Password`) VALUES
+('A01', 'SuSu', 'SuSu123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `BookingID` int(11) NOT NULL,
+  `CustomerName` varchar(30) DEFAULT NULL,
+  `Email` varchar(30) DEFAULT NULL,
+  `Date` varchar(15) DEFAULT NULL,
+  `Time` varchar(15) DEFAULT NULL,
+  `Description` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`BookingID`, `CustomerName`, `Email`, `Date`, `Time`, `Description`) VALUES
+(1, 'Thidar', 'thidar123@gmail.com', '9/24/2022', '9:00 AM', 'Fitness Bike issues'),
+(2, 'Ko  Ko', 'koko123@gmail.com', '9/24/2022', '9:00 AM', 'Check running machine'),
+(3, 'Ko Oo', 'kooo11111@gmail.com', '9/25/2022', '9:00 AM', 'Check running machine'),
+(4, 'B B', 'BB12345@gmail.com', '9/24/2022', '9:00 AM', 'Fitness Bike issues');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `Name` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Subject` varchar(100) DEFAULT NULL,
+  `Message` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`Name`, `Email`, `Subject`, `Message`) VALUES
+('Nwe', 'nwe123@gmail.com', 'check my account', 'I cannot login in'),
+('Ei Mon', 'eimon111@gmail.com', ' testing', 'test'),
+('Ko Ko', 'koko123@gmail.com', ' payment error', 'I cannot choose the payment');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `CustomerID` int(11) NOT NULL,
+  `CustomerName` varchar(30) DEFAULT NULL,
+  `PhoneNo` varchar(30) DEFAULT NULL,
+  `Email` varchar(30) DEFAULT NULL,
+  `Password` varchar(30) DEFAULT NULL,
+  `Address` varchar(30) DEFAULT NULL,
+  `Image` text DEFAULT NULL,
+  `ViewCount` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`CustomerID`, `CustomerName`, `PhoneNo`, `Email`, `Password`, `Address`, `Image`, `ViewCount`) VALUES
+(1, 'Ei Mon', '09123456789', 'eimon111@gmail.com', '1111111', 'Yangon', 'img/_copy.png', 24),
+(5, 'Aung Aung', '0912346789', 'aung111@gmail.com', 'aungaung', 'Yangon', 'img/_howl.png', 2),
+(6, 'Su Su', '9777888999', 'susu123@gmail.com', 'susu', 'Yangon', 'img/', 7),
+(7, 'Su Mon', '09123456456', 'sumon123@gmail.com', 'sumon', 'Mandalay', 'img/_H.jpg', 1),
+(8, 'Kyaw Kyaw', '09123654789', 'kyawkyaw123@gmail.com', 'kyawkayw', 'Pwin Oo Lwin', 'img/_E.jpg', 1),
+(9, 'Kaung Kaung', '0912456789', 'kaungkaung123@gmail.com', '123kgkg', 'Yangon', 'img/_E.jpg', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetail`
+--
+
+CREATE TABLE `orderdetail` (
+  `OrderID` varchar(30) NOT NULL,
+  `ProductID` int(11) NOT NULL,
+  `Product_Price` int(11) DEFAULT NULL,
+  `BuyQty` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderdetail`
+--
+
+INSERT INTO `orderdetail` (`OrderID`, `ProductID`, `Product_Price`, `BuyQty`) VALUES
+('ORD-000002', 1, 100000, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `OrderID` varchar(30) NOT NULL,
+  `OrderDate` varchar(30) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `Order_Total_Amount` int(11) DEFAULT NULL,
+  `Tax` int(11) DEFAULT NULL,
+  `All_Total` int(11) DEFAULT NULL,
+  `Order_Quantity` int(11) DEFAULT NULL,
+  `Remark` varchar(100) DEFAULT NULL,
+  `Payment_Type` varchar(30) DEFAULT NULL,
+  `Order_Location` varchar(30) DEFAULT NULL,
+  `Order_Phone` varchar(30) DEFAULT NULL,
+  `Order_Status` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`OrderID`, `OrderDate`, `CustomerID`, `Order_Total_Amount`, `Tax`, `All_Total`, `Order_Quantity`, `Remark`, `Payment_Type`, `Order_Location`, `Order_Phone`, `Order_Status`) VALUES
+('ORD-000001', '2022-09-23', 1, 200000, 10000, 210000, 2, 'Delivery at weekends', '', 'ygn', '0976628', 'Pending'),
+('ORD-000002', '2022-09-23', 1, 200000, 10000, 210000, 2, '-', 'COD', '', '', 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `ProductID` int(11) NOT NULL,
+  `ProductName` varchar(30) DEFAULT NULL,
+  `ProductAmount` int(11) DEFAULT NULL,
+  `ProductQuantity` int(11) DEFAULT NULL,
+  `ProductImage` text DEFAULT NULL,
+  `Description` varchar(100) DEFAULT NULL,
+  `ProductTypeID` int(11) DEFAULT NULL,
+  `Status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`ProductID`, `ProductName`, `ProductAmount`, `ProductQuantity`, `ProductImage`, `Description`, `ProductTypeID`, `Status`) VALUES
+(1, '6 in 1 Fitness Machine', 100000, 1, 'img/__30.png', 'Best Direct Gym form', 3, 'Second'),
+(2, 'Sit up bench', 540000, 3, 'img/26.jpg', 'adjustable abdominal bench home use ', 1, 'New'),
+(3, 'Bench and squat rack', 200000, 5, 'img/31.jpg', 'Everfit Squat Rack', 2, 'New'),
+(13, 'INFIT ', 100000, 1, 'img/__27.jpg', 'All in ONE Upper Body Training', 3, 'Second'),
+(14, 'Fitness Bike', 50000, 1, 'img/4.jpg', 'Fitness bike', 3, 'Second'),
+(15, 'Fitness weight set', 540000, 2, 'img/2.jpg', 'Fitness weight set 5lbs, 10lbs, 15 lbs', 3, 'Second'),
+(16, 'Smith Machine', 1000000, 3, 'img/3.jpg', 'Multi Gym with Smith Machine', 1, 'New'),
+(17, 'Weight-lifting Bed', 2000000, 3, 'img/29.jpg', 'Multifunctional Weight-lifting Bed', 1, 'New'),
+(18, 'Smart Watch', 500000, 3, 'img/watch3.jpg', 'Smart Watch for Women', 2, 'Feature'),
+(19, 'Kieslect Lady Smart Watch', 200000, 3, 'img/watch2.jpg', ' L11 – Pink', 2, 'Feature'),
+(20, 'Smart Bracelet', 100000, 2, 'img/watch1.jpg', 'Brand 5 Smart Bracelet', 2, 'Feature'),
+(21, 'Smart glasses', 200000, 2, 'img/glasses3.jpg', 'Yanko Design', 2, 'Feature'),
+(22, 'Smart Glasses', 1000000, 2, ' img/glasses2.jpg', 'Yanko Design', 2, 'Feature'),
+(23, 'Smart Glasses', 150000, 2, 'img/glasses1.jpg', 'smart eye tracking glasses', 2, 'Feature'),
+(24, 'Smart Ring', 138000, 3, 'img/ring1.jpg', 'Bkrtondsy Smart Ring', 2, 'Feature'),
+(25, 'Smart Ring', 200000, 5, 'img/ring2.png', 'Top pick for runner', 2, 'Feature'),
+(26, 'Smart Ring', 400000, 3, 'img/ring3.jpg', 'can detect alcohol level', 2, 'Feature'),
+(27, 'Insight Fitness Bench', 500000, 5, 'img/32.png', 'Insight Fitness Bench', 1, 'New'),
+(28, 'Marcy', 500000, 5, 'img/1.jpg', 'Marcy Home Gym Stack MWM-988', 1, 'New'),
+(29, 'Treadmill', 1500000, 5, 'img/22.jpg', 'Treadmill Automatic Foldable', 1, 'New');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `producttype`
+--
+
+CREATE TABLE `producttype` (
+  `ProductTypeID` int(11) NOT NULL,
+  `ProductName` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `producttype`
+--
+
+INSERT INTO `producttype` (`ProductTypeID`, `ProductName`) VALUES
+(1, 'Group A'),
+(2, 'Group B'),
+(3, 'Group C');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`AdminID`);
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`BookingID`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`CustomerID`);
+
+--
+-- Indexes for table `orderdetail`
+--
+ALTER TABLE `orderdetail`
+  ADD PRIMARY KEY (`OrderID`,`ProductID`),
+  ADD KEY `ProductID` (`ProductID`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`OrderID`),
+  ADD KEY `CustomerID` (`CustomerID`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`ProductID`),
+  ADD KEY `ProductTypeID` (`ProductTypeID`);
+
+--
+-- Indexes for table `producttype`
+--
+ALTER TABLE `producttype`
+  ADD PRIMARY KEY (`ProductTypeID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `producttype`
+--
+ALTER TABLE `producttype`
+  MODIFY `ProductTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orderdetail`
+--
+ALTER TABLE `orderdetail`
+  ADD CONSTRAINT `orderdetail_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`),
+  ADD CONSTRAINT `orderdetail_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`ProductTypeID`) REFERENCES `producttype` (`ProductTypeID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
